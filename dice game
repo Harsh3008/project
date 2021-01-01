@@ -1,0 +1,79 @@
+int main ()
+{
+    char n1[100],n2[100];
+    printf ("Welcome to the Ultimate Virtual Dice Game!\n\n");
+    printf ("Enter Player 1 Name---> ");
+    gets(n1);
+    printf ("Enter Player 2 Name---> ");
+    gets(n2);
+    int p1=0,p2=0,r,a,no1,no2,c1=0,c2=0;
+    no1=getno1();
+    while (!((no1<= 6) && (no1 >= 1)))
+        {
+        printf("[ERROR] The number you entered is out of range. Please enter again.\n");
+        no1 = getno1();
+        }
+    no2=getno2();
+    while (!((no2<= 6) && (no2 >= 1)))
+        {
+        printf("[ERROR] The number you entered is out of range. Please enter again.\n");
+        no2 = getno2();
+        }
+    printf ("\nNumber selected by %s is: %d\n",n1,no1);
+    printf ("Number selected by %s is %d\n\n",n2,no2);
+    printf ("READY.....GET SET.....ROLL\n\n");
+    printf ("%s's turn\n\n",n1);
+    srand(time(0));
+    value:r=rand()%6+1;
+    if (r!=no1)
+    {
+        p1=p1+r;
+        c1++;
+        printf ("Dice stops at %d\n",r);
+        printf ("Current score of %s after %d chance : %d\n\n",n1,c1,p1);
+        goto value;
+    }
+        else
+        {
+        printf ("Dice stops at %d\n",r);
+        printf ("GAME OVER for %s as %d is encountered\n\n",n1,no1);
+        printf ("%s's turn\n\n",n2);
+        }
+    val:a=rand()%6+1;
+    if (a!=no2)
+    {
+        p2=p2+a;
+        c2++;
+        printf ("Dice stops at %d\n",a);
+        printf ("Current score of %s after %d chance : %d\n\n",n2,c2,p2);
+        goto val;
+    }
+        else
+        {
+        printf ("Dice stops at %d\n",a);
+        printf ("GAME OVER for %s as %d is encountered\n\n",n2,no2);
+        }
+    printf ("Total score of %s is %d\n\n",n1,p1);
+    printf ("Total score of %s is %d\n\n",n2,p2);
+    if (p1>p2)
+    printf ("Congratulations %s! You are the winner.\n",n1);
+    else if (p2>p1)
+    printf ("Congratulations %s! You are the winner.\n",n2);
+    else
+    printf ("Its a tie");
+    return 0;
+}
+int getno1()
+{
+    printf ("\nPlayer 1 select any number between 1 and 6 when you want the dice to stop rolling: ");
+    int num;
+    scanf("%d", &num);
+    return (num);
+}
+int getno2()
+{
+    printf ("\nPlayer 2 select any number between 1 and 6 when you want the dice to stop rolling: ");
+    int num;
+    scanf("%d", &num);
+    return (num);
+}
